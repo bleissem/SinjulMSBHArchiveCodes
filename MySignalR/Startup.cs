@@ -96,7 +96,7 @@ namespace MySignalR
                 endpoints.MapControllers();
                 endpoints.MapRazorPages();
 
-                endpoints.MapHub<ChatHub>("/chathub", options =>
+                endpoints.MapHub<ChatHub>("/chatHub", options =>
                 {
                     options.Transports =
                         HttpTransportType.WebSockets |
