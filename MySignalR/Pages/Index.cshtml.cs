@@ -81,5 +81,24 @@ namespace MySignalR.Pages
 
         private string GetPathAndFilename(string filename) =>
             $"{_webHostEnvironment.WebRootPath}\\uploads\\{filename}";
+
+
+        //public static void SetCulture(string culture)
+        //{
+        //    var cultureCookie = HttpContext.Current.Request.Cookies["_culture"] ?? new HttpCookie("_culture");
+        //    cultureCookie.Value = culture;
+        //    var request = HttpContext.Current.Request;
+
+        //    cultureCookie.Domain = request.Url.Host;
+
+        //    cultureCookie.Expires = DateTime.Now.AddYears(1);
+        //    cultureCookie.Path = "/";
+        //    HttpContext.Current.Response.Cookies.Add(cultureCookie);
+
+        //    CultureInfo info = CultureInfo.CreateSpecificCulture(culture.ToString());
+
+        //    Thread.CurrentThread.CurrentCulture = info;
+        //    Thread.CurrentThread.CurrentUICulture = info;
+        //}
     }
 }

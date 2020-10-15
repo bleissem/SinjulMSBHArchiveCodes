@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http.Connections;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -34,7 +35,7 @@ namespace MySignalR
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            services.AddControllers();
+            services.AddControllers(_ => _.Filters.Add<LanguageFilterAttribute>());
             services.AddRazorPages();
 
             services.AddCors(options => options.AddPolicy("CorsPolicy",
@@ -49,14 +50,28 @@ namespace MySignalR
                })
             );
 
-            services.AddSignalR(hubOptions =>
+            services.AddSingleton<LanguageFilter>();
+
+            services.AddSignalR(options =>
             {
-                hubOptions.EnableDetailedErrors = true;
-                hubOptions.KeepAliveInterval = TimeSpan.FromMinutes(1);
+                options.EnableDetailedErrors = true;
+                options.KeepAliveInterval = TimeSpan.FromMinutes(1);
+
+                // Global filters will run first
+                //options.AddFilter<CustomFilter>();
+                //options.AddFilter(typeof(CustomFilter));
+                //options.AddFilter(new CustomFilter());
+
+                //options.AddFilter<LanguageFilter>();
             })
                 .AddHubOptions<ChatHub>(options =>
                 {
                     options.EnableDetailedErrors = true;
+
+
+                    // Local filters will run second
+                    options.AddFilter<CustomFilter>();
+                    options.AddFilter<LanguageFilter>();
                 })
                 .AddJsonProtocol(options =>
                 {
@@ -72,7 +87,8 @@ namespace MySignalR
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseDatabaseErrorPage();
+                //app.UseDatabaseErrorPage();
+                //app.UseMigrationsEndPoint();
             }
             else
             {

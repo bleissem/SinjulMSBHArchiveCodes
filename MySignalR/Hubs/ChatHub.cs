@@ -105,9 +105,11 @@ namespace MySignalR.Hubs
 
     public class ChatHub : Hub
     {
+        [LanguageFilter(FilterArgument = 0, Order = 0)]
         public async Task SendMessage(string user, string message) =>
             await Clients.All.SendAsync("ReceiveMessage", user, message);
 
+        [LanguageFilter(FilterArgument = 1, Order = 1)]
         public async Task SendMessage2(string message)
         {
             await Clients.All.SendAsync("ReceiveMessage2", new
@@ -118,7 +120,7 @@ namespace MySignalR.Hubs
         }
 
 
-        public async Task SendFileData(string path, string fileName) => 
+        public async Task SendFileData(string path, string fileName) =>
             await Clients.All.SendAsync("ReceiveFileData", path, fileName);
 
 
