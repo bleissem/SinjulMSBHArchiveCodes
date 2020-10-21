@@ -1,0 +1,17 @@
+﻿
+
+C:\Windows\System32\drivers\etc\hosts
+notepad C:\Windows\System32\drivers\etc\hosts
+code C:\Windows\System32\drivers\etc\hosts
+
+
+127.0.0.1  sinjul
+127.0.0.1  msbh
+
+
+https://sinjul:5001/:
+https://msbh:5001/:
+
+
+Enabling host filtering for Kestrel ..
+"AllowedHosts": "sinjul;msbh;localhost;127.0.0.1;[::1]"
