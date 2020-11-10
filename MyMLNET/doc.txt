@@ -1,0 +1,46 @@
+﻿franzsilva/MLBuilderVSCode-Source
+https://github.com/franzsilva/MLBuilderVSCode-Source
+
+Image Classification(Deep Learning) with ML.NET and Blazor Server App (.NET Core) - YouTube
+https://www.youtube.com/watch?v=EWOVAETLIRs
+
+Creating a Deep Neural Network in ML.NET - Microsoft.ML.Vision Update - YouTube
+https://www.youtube.com/watch?v=ppRauvf6uCs
+
+#ML.NET Image Classification with ML.NET Command-Line Interface (CLI), no #VS2019 needed ! – El Bruno
+https://elbruno.com/2020/10/20/ml-net-image-classification-with-ml-net-command-line-interface-cli-no-vs2019-needed/
+
+Tutorial: Predict prices using regression with Model Builder - ML.NET | Microsoft Docs
+https://docs.microsoft.com/en-us/dotnet/machine-learning/tutorials/predict-prices-with-model-builder
+
+ML.NET Model Builder (Preview) - Visual Studio Marketplace
+https://marketplace.visualstudio.com/items?itemName=franzssilva.ml-net-model-builder
+
+ML.NET Model Builder (Preview) - Visual Studio Marketplace
+https://marketplace.visualstudio.com/items?itemName=MLNET.07
+
+Deploy a model in an ASP.NET Core Web API - ML.NET | Microsoft Docs
+https://docs.microsoft.com/en-us/dotnet/machine-learning/how-to-guides/serve-model-web-api-ml-net
+
+Deploy a model in an ASP.NET Core Web API - ML.NET | Microsoft Docs
+https://docs.microsoft.com/en-us/dotnet/machine-learning/how-to-guides/serve-model-web-api-ml-net
+
+How to install the ML.NET Command-Line Interface (CLI) tool - ML.NET | Microsoft Docs
+https://docs.microsoft.com/en-us/dotnet/machine-learning/how-to-guides/install-ml-net-cli
+
+
+
+dotnet tool install -g mlnet
+
+mlnet
+
+dotnet tool install -g mlnet --framework <FRAMEWORK> netstandard2.1	 netcoreapp3.1  net5.0	 net48 
+
+dotnet tool list -g
+
+dotnet tool uninstall mlnet -g
+
+dotnet tool update -g mlnet
+
+dotnet tool install dotnet-suggest -g
+
