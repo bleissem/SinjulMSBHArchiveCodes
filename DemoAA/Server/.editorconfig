@@ -1,0 +1,13 @@
+﻿[*.{cs,vb}]
+
+# IDE0040: Accessibility modifiers required (escalated to a build warning)
+# dotnet_diagnostic.IDE0040.severity = warning
+
+# Default severity for analyzer diagnostics with category 'Style' (escalated to build warnings)
+dotnet_analyzer_diagnostic.category-Style.severity = silent
+
+# IDE0040: Accessibility modifiers required (disabled on build)
+dotnet_diagnostic.IDE0040.severity = silent
+
+dotnet_diagnostic.CA1822.severity = none
+
