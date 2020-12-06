@@ -1,0 +1,118 @@
+﻿@page "/fetchdata"
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@using BlazorCollectionSample.Shared
+@*@attribute [Authorize]*@
+
+<h1>Weather forecast</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+@if (forecasts == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Temp. (C)</th>
+                <th>Temp. (F)</th>
+                <th>Summary</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var forecast in forecasts)
+            {
+                <tr>
+                    <td>@forecast.Date.ToShortDateString()</td>
+                    <td>@forecast.TemperatureC</td>
+                    <td>@forecast.TemperatureF</td>
+                    <td>@forecast.Summary</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <hr/>
+     <table class="table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Temp. (C)</th>
+                <th>Temp. (F)</th>
+                <th>Summary</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var forecast in forecasts2)
+            {
+                <tr>
+                    <td>@forecast.Date.ToShortDateString()</td>
+                    <td>@forecast.TemperatureC</td>
+                    <td>@forecast.TemperatureF</td>
+                    <td>@forecast.Summary</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+     <table class="table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Temp. (C)</th>
+                <th>Temp. (F)</th>
+                <th>Summary</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var forecast in forecasts3)
+            {
+                <tr>
+                    <td>@forecast.Date.ToShortDateString()</td>
+                    <td>@forecast.TemperatureC</td>
+                    <td>@forecast.TemperatureF</td>
+                    <td>@forecast.Summary</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <hr/>
+    <p>@settings.StiteTitle</p>
+    <p>@settings.StiteIcon</p>
+}
+
+
+@using BlazorCollectionSample.Client.SinjulMSBH
+@inject IWeatherForecastService IWeatherForecastService
+@inject IWeatherForecastService2 IWeatherForecastService2
+@inject IWeatherForecastService3 IWeatherForecastService3
+
+@inject ISiteSettingsService SiteSettingsService
+
+
+@code {
+    private WeatherForecast[] forecasts;
+    private WeatherForecast[] forecasts2;
+    private WeatherForecast[] forecasts3;
+
+        private SiteSettings settings;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            forecasts = await IWeatherForecastService.GetAllAsync();
+            forecasts2 = await IWeatherForecastService2.GetAllAsync();
+            forecasts3 = await IWeatherForecastService3.GetAllAsync();
+
+            settings = await SiteSettingsService.GetSiteSettingsAsync(); 
+        }
+        catch (AccessTokenNotAvailableException exception)
+        {
+            exception.Redirect();
+        }
+    }
+
+}

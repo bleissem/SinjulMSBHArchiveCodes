@@ -1,0 +1,22 @@
+﻿@page "/"
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<SurveyPrompt Title="How is Blazor working for you?" />
+
+
+@using BlazorCollectionSample.Client.Components;
+
+<h3 class="p-3 text-center">Blazor HTTP GET Requests</h3>
+<GetRequest />
+<GetRequestDynamicResponse />
+<GetRequestErrorHandling />
+<GetRequestSetHeaders />
+
+<h3 class="p-3 text-center">Blazor HTTP POST Requests</h3>
+<PostRequest />
+<PostRequestDynamicResponse />
+<PostRequestErrorHandling />
+<PostRequestSetHeaders />
