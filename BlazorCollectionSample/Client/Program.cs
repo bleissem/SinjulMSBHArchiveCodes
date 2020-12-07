@@ -5,7 +5,10 @@ using System.Threading.Tasks;
 using BlazorCollectionSample.Client.SinjulMSBH;
 
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using BlazorCollectionSample.Shared.SinjulMSBH;
 
 namespace BlazorCollectionSample.Client
 {
@@ -50,6 +53,26 @@ namespace BlazorCollectionSample.Client
 
 
             //◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘
+
+            builder.Logging.AddConfiguration(builder.Configuration.GetSection("Logging"));
+
+            builder.Services.Configure<SiteSettings>(builder.Configuration.GetSection(nameof(SiteSettings)));
+            //builder.Services.AddOptions<SiteSettings>()
+            //      .Bind(builder.Configuration.GetSection(nameof(SiteSettings)))
+            //      .ValidateDataAnnotations();
+
+            var http = new HttpClient()
+            {
+                BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
+            };
+            builder.Services.AddScoped(sp => http);
+            using var response = await http.GetAsync("cars.json");
+            using var stream = await response.Content.ReadAsStreamAsync();
+            builder.Configuration.AddJsonStream(stream);
+
+
+            //◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘
+
 
             await builder.Build().RunAsync();
         }

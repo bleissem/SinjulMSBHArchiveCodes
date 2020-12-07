@@ -1,4 +1,3 @@
-using System.Linq;
 
 using BlazorCollectionSample.Server.Data;
 using BlazorCollectionSample.Server.Models;
@@ -7,8 +6,6 @@ using BlazorCollectionSample.Shared.SinjulMSBH;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
